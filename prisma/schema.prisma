@@ -1,0 +1,75 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+ id       Int     @id @default(autoincrement())
+ password String
+ username     String
+ createdAt DateTime @default(now())
+ updatedAt DateTime @updatedAt
+ todo Todo[]
+}
+
+model Student {
+  id       Int     @id @default(autoincrement())
+  firstName String
+  lastName  String
+  middleName String?
+  birthdate  DateTime
+  email     String  @unique
+  campus    Campus  @relation(fields: [campusId], references: [id])
+  campusId  Int
+  school    School  @relation(fields: [schoolId], references: [id])
+  schoolId  Int
+}
+
+model Campus {
+  id   Int    @id @default(autoincrement())
+  name String
+  students Student[]
+}
+
+model School {
+  id   Int    @id @default(autoincrement())
+  name String
+  students Student[]
+}
+
+model Todo {
+  id Int @id @default(autoincrement())
+  task String
+  description String?
+  done Boolean @default(false)
+  deadlineAT DateTime?
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  userId Int
+  user User @relation(fields: [userId], references: [id])
+}
+
+model Cars {
+  id Int @id @default(autoincrement())
+  Make String
+  Model String
+  Year Int
+  GasolineId Int
+  Gasoline Gasoline @relation(fields: [GasolineId], references: [id])
+}
+
+model Gasoline {
+  id Int @id @default(autoincrement())
+  Gas String
+  cars Cars[]
+}
