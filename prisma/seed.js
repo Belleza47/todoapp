@@ -15,6 +15,7 @@ const userData = {
             { task: "Task Modified"},
             { task: "Experimental Code"},
             { task: "Developer B"},
+            { task: "Developer A"},
         ]
     }
 }
