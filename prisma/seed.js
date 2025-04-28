@@ -8,6 +8,12 @@ const userData = {
         create: [
             { task: "Water the Plant" },
             { task: "Buy Sugar"},
+            { task: "Buy Salt"},
+            { task: "Schedule Appointment"},
+            { task: "Review for Exam"},
+            { task: "Finish the Project"},
+            { task: "Task Modified"},
+            { task: "Experimental Code"},
         ]
     }
 }
